@@ -25,7 +25,7 @@ parasails.registerPage('edit-profile', {
     _.extend(this, SAILS_LOCALS);
 
     // Set the form data.
-    this.formData.fullName = this.me.fullName;
+    // this.formData.fullName = this.me.fullName;
     this.formData.emailAddress = this.me.emailChangeCandidate ? this.me.emailChangeCandidate : this.me.emailAddress;
   },
   mounted: async function() {
@@ -52,9 +52,9 @@ parasails.registerPage('edit-profile', {
       var argins = this.formData;
 
       // Validate name:
-      if(!argins.fullName) {
-        this.formErrors.password = true;
-      }
+      // if(!argins.fullName) {
+      //   this.formErrors.password = true;
+      // }
 
       // Validate email:
       if(!argins.emailAddress) {
