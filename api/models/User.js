@@ -29,13 +29,13 @@ module.exports = {
       example: '2$28a8eabna301089103-13948134nad'
     },
 
-    fullName: {
-      type: 'string',
-      required: true,
-      description: 'Full representation of the user\'s name',
-      maxLength: 120,
-      example: 'Lisa Microwave van der Jenny'
-    },
+    // fullName: {
+    //   type: 'string',
+    //   required: true,
+    //   description: 'Full representation of the user\'s name',
+    //   maxLength: 120,
+    //   example: 'Lisa Microwave van der Jenny'
+    // },
 
     isSuperAdmin: {
       type: 'boolean',
@@ -66,7 +66,7 @@ So, while this \`isSuperAdmin\` demarcation might not be the right approach fore
       example: 1502844074211
     },
 
-    stripeCustomerId: {
+    /*stripeCustomerId: {
       type: 'string',
       protect: true,
       description: 'The id of the customer entry in Stripe associated with this user (or empty string if this user is not linked to a Stripe customer -- e.g. if billing features are not enabled).',
@@ -110,7 +110,7 @@ without necessarily having a billing card.`
       example: '2023',
       description: 'The four-digit expiration year from this user\'s default billing card, formatted as YYYY (or empty string if no credit card is set up).',
       extendedDescription: 'To ensure PCI compliance, this data comes from Stripe, where it reflects the user\'s default payment source.'
-    },
+    },*/
 
     emailProofToken: {
       type: 'string',

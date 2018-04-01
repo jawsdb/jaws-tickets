@@ -23,12 +23,12 @@ module.exports = {
       example: 'I want to buy stuff.'
     },
 
-    fullName: {
-      required: true,
-      type: 'string',
-      description: 'The full name of the human sending this message.',
-      example: 'Hermione Granger'
-    },
+    // fullName: {
+    //   required: true,
+    //   type: 'string',
+    //   description: 'The full name of the human sending this message.',
+    //   example: 'Hermione Granger'
+    // },
 
     message: {
       required: true,

@@ -55,11 +55,12 @@ parasails.registerPage('signup', {
       this.formErrors = {};
 
       var argins = this.formData;
+      console.log(argins);
 
       // Validate full name:
-      if(!argins.fullName) {
-        this.formErrors.fullName = true;
-      }
+      // if(!argins.fullName) {
+      //   this.formErrors.fullName = true;
+      // }
 
       // Validate email:
       if(!argins.emailAddress || !parasails.util.isValidEmailAddress(argins.emailAddress)) {
