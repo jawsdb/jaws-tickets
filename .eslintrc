@@ -43,7 +43,11 @@
     "async": true,
 
     // Models:
-    "User": true
+    "User": true,
+    "Category": true,
+    "Response": true,
+    "Status": true,
+    "Ticket": true
 
     // …and any others.
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -63,7 +63,6 @@ the account verification message.)`,
 
 
   fn: async function (inputs, exits) {
-    console.log(inputs);
     var newEmailAddress = inputs.emailAddress.toLowerCase();
 
     // Build up data for the new user record and save it to the database.

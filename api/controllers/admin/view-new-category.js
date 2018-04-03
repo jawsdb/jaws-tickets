@@ -17,9 +17,16 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
+    let existingCategories = await Category.find();
+    let categoryArr = [];
+    for (var i = 0; i < existingCategories.length; i++) {
+      categoryArr.push(existingCategories[i].name);
+    }
 
     // Respond with view.
-    return exits.success();
+    return exits.success({
+      categories: categoryArr
+    });
 
   }
 

@@ -1,7 +1,43 @@
 <div id="new-category" v-cloak>
 
-  <h1>TODO: Implement this page.</h1>
-  <p>(See also <em>assets/styles/pages/admin/new-category.less</em>, <em>assets/js/pages/admin/new-category.page.js</em>, and <em>api/controllers/admin/view-new-category.js</em>.)</p>
+  <div class="container">
+    <h1 class="text-center">Create a New Category</h1>
+    <div class="new-category-form-container">
+      <hr/>
+      <ajax-form action="category" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
+        <div class="form-group">
+          <label for="category-name">Category Name</label>
+          <input type="text" class="form-control" id='category-name' placeholder="Product: i.e. JawsDB Maria" :class="[formErrors.categoryName ? 'is-invalid' : '']" v-model.trim="formData.categoryName" focus-first>
+          <div class="invalid-feedback" v-if="formErrors.categoryName">Please provide a valid Category Name.</div>
+        </div>
+        <!--<div class="form-group">
+          <input type="email" class="form-control" placeholder="Email Address" :class="[formErrors.emailAddress ? 'is-invalid' : '']" v-model.trim="formData.emailAddress" focus-first>
+          <div class="invalid-feedback" v-if="formErrors.emailAddress">Please provide a valid email address.</div>
+        </div>-->
+        <p class="text-danger" v-if="cloudError"><small>An error occured while processing your request. Please check your information and try again, or <a href="/contact">contact support</a> if the error persists.</small></p>
+        <div class="form-group">
+          <ajax-button :syncing="syncing" class="btn-dark btn-lg btn-block">Submit</ajax-button>
+        </div>
+      </ajax-form>
+    </div>
+  </div>
+
+  <div class="container">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Existing Categories</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% for (let i = 0; i < categories.length; i++) { %>
+        <tr>
+          <td><%= categories[i] %></td>
+        </tr>
+      <% } %>
+      <tbody>
+    </table>
+  </div>
 
 </div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
