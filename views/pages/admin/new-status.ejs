@@ -1,0 +1,39 @@
+<div id="new-status" v-cloak>
+
+  <div class="container">
+    <h1 class="text-center">Create a New Status for tickets</h1>
+    <div class="new-status-form-container">
+      <hr/>
+      <ajax-form action="status" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
+        <div class="form-group">
+          <label for="category-name">Status Name</label>
+          <input type="text" class="form-control" id='status-name' placeholder="New ticket status: e.g. Open" :class="[formErrors.statusName ? 'is-invalid' : '']" v-model.trim="formData.statusName" focus-first>
+          <div class="invalid-feedback" v-if="formErrors.statusName">Please provide a valid Status Name.</div>
+        </div>
+        <p class="text-danger" v-if="cloudError"><small>An error occured while processing your request. Please check your information and try again, or <a href="/contact">contact support</a> if the error persists.</small></p>
+        <div class="form-group">
+          <ajax-button :syncing="syncing" class="btn-dark btn-lg btn-block">Submit</ajax-button>
+        </div>
+      </ajax-form>
+    </div>
+  </div>
+
+  <div class="container">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Existing Statuses</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% for (let i = 0; i < statuses.length; i++) { %>
+        <tr>
+          <td><%= statuses[i] %></td>
+        </tr>
+      <% } %>
+      <tbody>
+    </table>
+  </div>
+
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

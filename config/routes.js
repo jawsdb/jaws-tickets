@@ -36,6 +36,7 @@ module.exports.routes = {
 
   'GET /admin':              { action: 'admin/view-admin' },
   'GET /admin/new-category': { action: 'admin/view-new-category' },
+  'GET /admin/new-status':   { action: 'admin/view-new-status' },
 
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
@@ -54,6 +55,7 @@ module.exports.routes = {
   'POST  /api/v1/deliver-contact-form-message':          { action: 'deliver-contact-form-message' },
 
   'POST /api/v1/objects/category':                       { action: 'objects/category' },
+  'POST /api/v1/objects/status':                         { action: 'objects/status' },
 
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
