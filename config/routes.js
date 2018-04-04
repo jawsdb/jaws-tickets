@@ -34,6 +34,7 @@ module.exports.routes = {
   'GET /account/password':   { action: 'account/view-edit-password' },
   'GET /account/profile':    { action: 'account/view-edit-profile' },
 
+  'GET /admin':              { action: 'admin/view-admin' },
   'GET /admin/new-category': { action: 'admin/view-new-category' },
 
 
@@ -52,7 +53,7 @@ module.exports.routes = {
   'POST  /api/v1/entrance/update-password-and-login':    { action: 'entrance/update-password-and-login' },
   'POST  /api/v1/deliver-contact-form-message':          { action: 'deliver-contact-form-message' },
 
-  'POST /api/v1/objects/category': { action: 'objects/category' },
+  'POST /api/v1/objects/category':                       { action: 'objects/category' },
 
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
