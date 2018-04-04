@@ -10,7 +10,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/admin/new-category'
+      viewTemplatePath: 'pages/category/create-category'
     }
 
   },

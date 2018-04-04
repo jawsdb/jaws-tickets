@@ -1,10 +1,10 @@
-<div id="new-status" v-cloak>
+<div id="create-status" v-cloak>
 
   <div class="container">
     <h1 class="text-center">Create a New Status for tickets</h1>
-    <div class="new-status-form-container">
+    <div class="create-status-form-container">
       <hr/>
-      <ajax-form action="status" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
+      <ajax-form action="createStatus" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
         <div class="form-group">
           <label for="category-name">Status Name</label>
           <input type="text" class="form-control" id='status-name' placeholder="New ticket status: e.g. Open" :class="[formErrors.statusName ? 'is-invalid' : '']" v-model.trim="formData.statusName" focus-first>

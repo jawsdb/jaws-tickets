@@ -10,7 +10,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/admin/new-status'
+      viewTemplatePath: 'pages/status/create-status'
     }
 
   },

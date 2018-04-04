@@ -41,8 +41,10 @@ module.exports = {
       model: 'user'
     },
 
-    status: {
-      model: 'status'
+    statuses: {
+      collection: 'status',
+      via: 'ticket',
+      through: 'ticketstatus'
     },
 
     category: {

@@ -29,6 +29,11 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
+    tickets: {
+      collection: 'ticket',
+      via: 'status',
+      through: 'ticketstatus'
+    }
 
   },
 

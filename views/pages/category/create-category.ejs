@@ -1,10 +1,10 @@
-<div id="new-category" v-cloak>
+<div id="create-category" v-cloak>
 
   <div class="container">
     <h1 class="text-center">Create a New Category</h1>
-    <div class="new-category-form-container">
+    <div class="create-category-form-container">
       <hr/>
-      <ajax-form action="category" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
+      <ajax-form action="createCategory" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
         <div class="form-group">
           <label for="category-name">Category Name</label>
           <input type="text" class="form-control" id='category-name' placeholder="Product: i.e. JawsDB Maria" :class="[formErrors.categoryName ? 'is-invalid' : '']" v-model.trim="formData.categoryName" focus-first>

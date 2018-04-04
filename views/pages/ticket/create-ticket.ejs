@@ -1,0 +1,46 @@
+<div id="create-ticket" v-cloak>
+
+  <div class="container">
+    <h1 class="text-center">Create Ticket</h1>
+    <div class="create-ticket-form-container">
+      <hr/>
+      <ajax-form action="createTicket" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select class="form-control" id="category" :class="[formErrors.category ? 'is-invalid' : '']" v-model.trim="formData.category" focus-first>
+            <% for (let i = 0; i < categories.length; i++) { %>
+            <option value="<%= categories[i].id %>"><%= categories[i].name %></option>
+            <% } %>
+          </select>
+          <div class="invalid-feedback" v-if="formErrors.subject">Please select a Category</div>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" class="form-control" id='subject' placeholder="Problem with provision" :class="[formErrors.subject ? 'is-invalid' : '']" v-model.trim="formData.subject">
+          <div class="invalid-feedback" v-if="formErrors.subject">Please provide a valid subject</div>
+        </div>
+        <div class="form-group">
+          <label for="body">Body</label>
+          <textarea name="body" class="form-control" id='body' placeholder="This is what happened..." :class="[formErrors.body ? 'is-invalid' : '']" v-model.trim="formData.body">
+          </textarea>
+          <div class="invalid-feedback" v-if="formErrors.body">Please provide a valid body</div>
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select class="form-control" id="status" :class="[formErrors.status ? 'is-invalid' : '']" v-model.trim="formData.status">
+            <% for (let i = 0; i < statuses.length; i++) { %>
+            <option value="<%= statuses[i].id %>"><%= statuses[i].name %></option>
+            <% } %>
+          </select>
+          <div class="invalid-feedback" v-if="formErrors.status">Please select a valid Status</div>
+        </div>
+        <p class="text-danger" v-if="cloudError"><small>An error occured while processing your request. Please check your information and try again, or <a href="/contact">contact support</a> if the error persists.</small></p>
+        <div class="form-group">
+          <ajax-button :syncing="syncing" class="btn-dark btn-lg btn-block">Submit</ajax-button>
+        </div>
+      </ajax-form>
+    </div>
+  </div>
+
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

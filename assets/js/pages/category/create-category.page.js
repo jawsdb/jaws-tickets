@@ -1,4 +1,4 @@
-parasails.registerPage('new-category', {
+parasails.registerPage('create-category', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
@@ -44,7 +44,7 @@ parasails.registerPage('new-category', {
       // > (Note that we re-enable the syncing state here.  This is on purpose--
       // > to make sure the spinner stays there until the page navigation finishes.)
       this.syncing = true;
-      window.location = '/admin/new-category';
+      window.location = '/admin/create-category';
     },
 
     handleParsingForm: function() {

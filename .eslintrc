@@ -47,7 +47,8 @@
     "Category": true,
     "Response": true,
     "Status": true,
-    "Ticket": true
+    "Ticket": true,
+    "Ticketstatus": true
 
     // …and any others.
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

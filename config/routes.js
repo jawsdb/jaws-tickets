@@ -34,9 +34,11 @@ module.exports.routes = {
   'GET /account/password':   { action: 'account/view-edit-password' },
   'GET /account/profile':    { action: 'account/view-edit-profile' },
 
-  'GET /admin':              { action: 'admin/view-admin' },
-  'GET /admin/new-category': { action: 'admin/view-new-category' },
-  'GET /admin/new-status':   { action: 'admin/view-new-status' },
+  'GET /admin':                 { action: 'admin/view-admin' },
+  'GET /admin/create-category': { action: 'category/view-create-category' },
+  'GET /admin/create-status':   { action: 'status/view-create-status' },
+
+  'GET /ticket/create-ticket':  { action: 'ticket/view-create-ticket' },
 
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
@@ -54,9 +56,10 @@ module.exports.routes = {
   'POST  /api/v1/entrance/update-password-and-login':    { action: 'entrance/update-password-and-login' },
   'POST  /api/v1/deliver-contact-form-message':          { action: 'deliver-contact-form-message' },
 
-  'POST /api/v1/objects/category':                       { action: 'objects/category' },
-  'POST /api/v1/objects/status':                         { action: 'objects/status' },
+  'POST /api/v1/category':                               { action: 'category/create-category' },
+  'POST /api/v1/status':                                 { action: 'status/create-status' },
 
+  'POST /api/v1/ticket':                                 { action: 'ticket/create-ticket' },
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

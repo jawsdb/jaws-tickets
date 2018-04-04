@@ -1,4 +1,4 @@
-parasails.registerPage('new-status', {
+parasails.registerPage('create-status', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
@@ -44,7 +44,7 @@ parasails.registerPage('new-status', {
       // > (Note that we re-enable the syncing state here.  This is on purpose--
       // > to make sure the spinner stays there until the page navigation finishes.)
       this.syncing = true;
-      window.location = '/admin/new-status';
+      window.location = '/admin/create-status';
     },
 
     handleParsingForm: function() {
