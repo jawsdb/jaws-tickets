@@ -9,10 +9,6 @@ module.exports = {
 
   inputs: {
 
-    // fullName: {
-    //   type: 'string'
-    // },
-
     emailAddress: {
       type: 'string'
     },
@@ -146,7 +142,7 @@ module.exports = {
         subject: 'Your account has been updated',
         template: 'email-verify-new-email',
         templateData: {
-          // fullName: inputs.fullName||this.req.me.fullName,
+          fullName: inputs.emailAddress,
           token: valuesToSet.emailProofToken
         }
       });

@@ -66,7 +66,7 @@ your custom config -- usually in \`config/custom.js\`, \`config/staging.js\`,
       template: 'internal/email-contact-form',
       layout: false,
       templateData: {
-        contactName: inputs.fullName,
+        contactName: inputs.emailAddress,
         contactEmail: inputs.emailAddress,
         topic: inputs.topic,
         message: inputs.message

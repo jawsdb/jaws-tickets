@@ -22,7 +22,7 @@ module.exports.custom = {
   * > but it can also be used for user-uploaded images, webhooks, etc.      *
   *                                                                         *
   **************************************************************************/
-  baseUrl: 'http://localhost:1337',
+  baseUrl: 'http://localhost:3000',
 
   /**************************************************************************
   *                                                                         *
@@ -53,21 +53,23 @@ module.exports.custom = {
   **************************************************************************/
   // mailgunDomain: 'sandboxaa1234fake678.mailgun.org',
   // mailgunSecret: 'key-fakeb183848139913858e8abd9a3',
+  mailgunDomain: process.env.MAILGUN_DOMAIN,
+  mailgunSecret: process.env.MAILGUN_SECRET,
   //--------------------------------------------------------------------------
   // /\  Configure these to enable support for automated emails.
   // ||  (Important for password recovery, verification, contact form, etc.)
   //--------------------------------------------------------------------------
 
   // The sender that all outgoing emails will appear to come from.
-  fromEmailAddress: 'noreply@example.com',
+  fromEmailAddress: 'noreply@jawsdbsupport.com',
   fromName: 'The JawsDB Support Team',
 
   // Email address for receiving support messages & other correspondences.
-  internalEmailAddress: 'support+development@example.com',
+  internalEmailAddress: process.env.SUPPORT_EMAIL,
 
   // Whether to require proof of email address ownership any time a new user
   // signs up, or when an existing user attempts to change their email address.
-  verifyEmailAddresses: false,
+  verifyEmailAddresses: true,
 
   /**************************************************************************
   *                                                                         *

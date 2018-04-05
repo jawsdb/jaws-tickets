@@ -102,7 +102,7 @@ the account verification message.)`,
         subject: 'Please confirm your account',
         template: 'email-verify-account',
         templateData: {
-          // fullName: inputs.fullName,
+          fullName: inputs.emailAddress,
           token: newUserRecord.emailProofToken
         }
       });
