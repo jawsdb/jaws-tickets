@@ -41,6 +41,11 @@ module.exports = {
     missingInputs: {
       statusCode: 400,
       description: 'Ticket is missing inputs'
+    },
+
+    redirect: {//why can't i redirect here?
+      description: 'The ticket has been created. Directing to ticket page.',
+      responseType: 'redirect'
     }
 
   },
@@ -68,8 +73,11 @@ module.exports = {
       status: statusId
     });
 
-    return exits.success();
-
+    //throw {redirect: `/ticket/${newTicket.id}`};
+    //return exits.redirect(`/ticket/${newTicket.id}`);//doesn't actually redirect for some reason
+    return exits.success({
+      ticketId: newTicket.id
+    });
   }
 
 

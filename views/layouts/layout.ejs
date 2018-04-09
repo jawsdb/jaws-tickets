@@ -36,6 +36,9 @@
         <div class="navbar-nav flex-row">
           <!-- LOGGED-IN NAVIGATION -->
           <% if(me) { %>
+          <div class="form-inline d-none ml-2 d-md-block" >
+            <a class="btn btn-outline-info" href="/ticket/create-ticket">New Ticket</a>
+          </div>
           <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
             <% if (me.isSuperAdmin) { %>
             <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/admin">Admin</a>
@@ -49,6 +52,7 @@
             </div>
           </div>
           <!-- Only in mobile nav -->
+          <a class="nav-item nav-link text-info ml-2 d-block d-md-none" href="/ticket/create-ticket">New Ticket</a>
           <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/account">Account Settings</a>
           <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout">Sign out</a>
           <% } else { %>
@@ -143,6 +147,7 @@
     <script src="/js/pages/legal/terms.page.js"></script>
     <script src="/js/pages/status/create-status.page.js"></script>
     <script src="/js/pages/ticket/create-ticket.page.js"></script>
+    <script src="/js/pages/ticket/index.page.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

@@ -39,6 +39,7 @@ module.exports.routes = {
   'GET /admin/create-status':   { action: 'status/view-create-status' },
 
   'GET /ticket/create-ticket':  { action: 'ticket/view-create-ticket' },
+  'GET /ticket/:id':            { action: 'ticket/view-index' },
 
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗

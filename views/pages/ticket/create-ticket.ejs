@@ -4,7 +4,7 @@
     <h1 class="text-center">Create Ticket</h1>
     <div class="create-ticket-form-container">
       <hr/>
-      <ajax-form action="createTicket" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
+      <ajax-form action="createTicket" :syncing.sync="syncing" :cloud-error.sync="cloudError" @submitted="submittedForm($event)" :handle-parsing="handleParsingForm">
         <div class="form-group">
           <label for="category">Category</label>
           <select class="form-control" id="category" :class="[formErrors.category ? 'is-invalid' : '']" v-model.trim="formData.category" focus-first>

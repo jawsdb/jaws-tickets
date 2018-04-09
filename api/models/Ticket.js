@@ -47,6 +47,11 @@ module.exports = {
       through: 'ticketstatus'
     },
 
+    statushist: {
+      collection: 'ticketstatus',
+      via: 'ticket'
+    },
+
     category: {
       model: 'category'
     },

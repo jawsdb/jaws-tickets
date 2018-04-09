@@ -148,7 +148,6 @@ parasails.registerComponent('ajaxForm', {
 
       // Prevent double-posting.
       if (this.syncing) {
-        console.log('wtf');
         return;
       }//•
 
@@ -157,7 +156,6 @@ parasails.registerComponent('ajaxForm', {
 
       // Determine the argins that will be sent to the server in our request.
       var argins;
-      console.log(this);
       if (this.handleParsing) {
         // Run the provided "handle-parsing" logic.
         // > This should clear out any pre-existing error messages, perform any additional

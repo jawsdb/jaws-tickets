@@ -20,6 +20,10 @@ parasails.registerPage('create-ticket', {
 
     // Server error state for the form
     cloudError: '',
+
+    dataFromAction: {
+
+    }
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -38,12 +42,14 @@ parasails.registerPage('create-ticket', {
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
 
-    submittedForm: async function() {
-      // Redirect to the account page on success.
+    submittedForm: async function(eventObj) {
+      // Redirect to the ticket page on success.
       // > (Note that we re-enable the syncing state here.  This is on purpose--
       // > to make sure the spinner stays there until the page navigation finishes.)
       this.syncing = true;
-      window.location = '/ticket/create-ticket';
+      // console.log('eventObj');
+      // console.log(eventObj);
+      window.location = `/ticket/${eventObj.ticketId}`;//Redirect in ticket/create-ticket action
     },
 
     handleParsingForm: function() {
