@@ -1,0 +1,32 @@
+<div id="index" v-cloak>
+
+  <div class="container">
+    <h1>My Tickets</h1>
+    <div class="row">
+      <div class="col-4">
+        Status
+      </div>
+      <div class="col-4">
+        Category
+      </div>
+      <div class="col-4">
+        Subject
+      </div>
+    </div>
+    <% for (let i = 0; i < tickets.length; i++) { %>
+    <div class="row">
+      <div class="col-4">
+        <%= tickets[i].status %>
+      </div>
+      <div class="col-4">
+        <%= tickets[i].category /*tickets[i].category.name*/ %>
+      </div>
+      <div class="col-4">
+        <a href="/ticket/<%= tickets[i].id %>"><%= tickets[i].subject %></a>
+      </div>
+    </div>
+    <% } %>
+  </div>
+
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

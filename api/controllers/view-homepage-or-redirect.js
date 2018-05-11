@@ -29,7 +29,8 @@ module.exports = {
       if (this.req.me.isSuperAdmin) {
         throw {redirect: '/admin'};
       }
-      throw {redirect:'/welcome'};
+      // throw {redirect:'/welcome'};
+      throw {redirect:'/tickets'};
     }
 
     return exits.success();

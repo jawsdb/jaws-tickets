@@ -41,6 +41,8 @@ module.exports.routes = {
   'GET /ticket/create-ticket':  { action: 'ticket/view-create-ticket' },
   'GET /ticket/:id':            { action: 'ticket/view-index' },
 
+  'GET /tickets':               { action: 'tickets/view-index' },
+
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
