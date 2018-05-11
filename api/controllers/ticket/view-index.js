@@ -37,17 +37,16 @@ module.exports = {
 
     //TODO: remove sensitive info from ticket before sending to view
 
-    let status = await Status.findOne({
+    ticket.status = (await Status.findOne({
       id: ticket.statushist[0].status
-    });
+    })).name;
 
     sails.log.debug(ticket);
 
     // Respond with view.
     return exits.success({
       ticket: ticket,
-      responses: responses,
-      status: status
+      responses: responses
     });
 
   }
