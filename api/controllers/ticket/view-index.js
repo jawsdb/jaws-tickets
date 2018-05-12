@@ -1,3 +1,5 @@
+const gravatar = require('gravatar');
+
 module.exports = {
 
 
@@ -30,11 +32,18 @@ module.exports = {
       limit: 1
     });
 
+    ticket.creator.gravatar = gravatar.url(ticket.creator.emailAddress, {s: '100', r: 'pg', d: 'mm'}, true);
+
     let responses = await Response.find({
       where: {ticket: ticketId},
       sort: 'id DESC'
     })
-    .populate('creator');
+    .populate('creator')
+    .populate('status');
+
+    for (let i = 0; i < responses.length; i++) {
+      responses[i].creator.gravatar = gravatar.url(responses[i].creator.emailAddress, {s: '100', r: 'pg', d: 'mm'}, true);
+    }
 
     //TODO: remove sensitive info from ticket before sending to view
 

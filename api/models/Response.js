@@ -34,6 +34,10 @@ module.exports = {
 
     ticket: {
       model: 'ticket'
+    },
+
+    status: {
+      model: 'status'
     }
 
   },

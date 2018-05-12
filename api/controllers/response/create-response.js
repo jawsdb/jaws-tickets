@@ -54,14 +54,15 @@ module.exports = {
     let ticketId = isNaN(inputs.ticketId) ? inputs.ticketId : Number(inputs.ticketId);
     let statusId = isNaN(inputs.status) ? inputs.status : Number(inputs.status);
 
+    await Ticketstatus.create({
+      ticket: ticketId,
+      status: statusId
+    });
+
     await Response.create({
       body: inputs.body,
       ticket: ticketId,
-      creator: this.req.me.id
-    });
-
-    await Ticketstatus.create({
-      ticket: ticketId,
+      creator: this.req.me.id,
       status: statusId
     });
 

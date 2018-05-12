@@ -1,48 +1,60 @@
 <div id="ticket-index">
   <div class="container">
     <h1><%= ticket.category.name %> - <%= ticket.subject %></h1>
-    <p><%= ticket.status %></p>
+    <h2>Status: <%= ticket.status %></h2>
+
+    <hr>
+    <br>
 
     <ajax-form action="createResponse" :syncing.sync="syncing" :cloud-error.sync="cloudError" @submitted="submittedForm($event)" :handle-parsing="handleParsingForm">
       <div class="form-group">
-        <label for="body">Body</label>
-        <textarea name="body" class="form-control" id='body' placeholder="Write a response here" :class="[formErrors.body ? 'is-invalid' : '']" v-model.trim="formData.body" focus-first>
+        <label for="body">Reply</label>
+        <textarea name="body" class="form-control" id='body' placeholder="Write a response here" :class="[formErrors.body ? 'is-invalid' : '']" v-model="formData.body" focus-first>
         </textarea>
         <div class="invalid-feedback" v-if="formErrors.body">Please provide a valid body</div>
       </div>
-      <div class="form-group">
-        <label for="status">Status</label>
-        <select class="form-control" id="status" :class="[formErrors.status ? 'is-invalid' : '']" v-model.trim="formData.status">
-          <% for (let i = 0; i < statuses.length; i++) { %>
-          <option value="<%= statuses[i].id %>"><%= statuses[i].name %></option>
-          <% } %>
-        </select>
-        <div class="invalid-feedback" v-if="formErrors.status">Please select a valid Status</div>
-      </div>
-      <input type="hidden" id="ticketId" name="ticketId" value="<%= ticket.id %>" v-bind:value="formData.ticketId">
-      <p class="text-danger" v-if="cloudError"><small>An error occured while processing your request. Please check your information and try again, or <a href="/contact">contact support</a> if the error persists.</small></p>
-      <div class="form-group">
-        <ajax-button :syncing="syncing" class="btn-dark btn-lg btn-block">Submit</ajax-button>
+      <div class="form-row">
+        <div class="form-inline col-md-6">
+          <label for="status" class="mr-4">Status</label>
+          <select class="form-control" id="status" :class="[formErrors.status ? 'is-invalid' : '']" v-model.trim="formData.status">
+            <% for (let i = 0; i < statuses.length; i++) { %>
+            <option value="<%= statuses[i].id %>"><%= statuses[i].name %></option>
+            <% } %>
+          </select>
+          <div class="invalid-feedback" v-if="formErrors.status">Please select a valid Status</div>
+        </div>
+        <p class="text-danger" v-if="cloudError"><small>An error occured while processing your request. Please check your information and try again, or <a href="/contact">contact support</a> if the error persists.</small></p>
+        <div class="form-inline col-md-6">
+          <ajax-button :syncing="syncing" class="btn-dark btn-lg btn-block">Submit</ajax-button>
+        </div>
       </div>
     </ajax-form>
 
+    <br>
+    <hr>
     <!--Responses go here.-->
     <% for (let i = 0; i < responses.length; i++) { %>
     <div class="card">
-      <div class="card-body">
-        <div class="row" style="background: #fafafa;">
-          <div class="col-sm-3">
-            <i class="fas fa-user"></i>
+      <div class="card-body" style="background: #fafafa;">
+        <div class="row">
+          <div class="col-sm-3" style="text-align: center;">
+            <img src="<%= responses[i].creator.gravatar %>">
             <p><%= responses[i].creator.emailAddress %></p>
             <p><%= responses[i].createdAt.toISOString().replace(/T/, ' ').replace(/\..*/, '') %></p>
           </div>
           <div class="col-sm-9" style="border-left: 3px grey solid;">
-            <p><%= responses[i].body %></p>
+            <p style="white-space: pre-wrap;"><%= responses[i].body %></p>
           </div>
         </div>
       </div>
+      <div class="card-footer text-muted">
+        Status: <%= responses[i].status.name %>
+      </div>
     </div>
+    <br>
     <% } %>
+
+    <hr>
 
     <div class="card">
       <div class="card-body">
@@ -50,8 +62,8 @@
           Ticket: <%= ticket.subject %>
         </h3>
         <div class="row" style="background: #fafafa;">
-          <div class="col-sm-3">
-            <i class="fas fa-user"></i>
+          <div class="col-sm-3" style="text-align: center;">
+            <img src="<%= ticket.creator.gravatar %>">
             <p><%= ticket.creator.emailAddress %></p>
             <p><%= ticket.createdAt.toISOString().replace(/T/, ' ').replace(/\..*/, '') %></p>
           </div>
