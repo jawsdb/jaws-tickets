@@ -1,15 +1,68 @@
-<div id="index" v-cloak>
+<div id="ticket-index">
+  <div class="container">
+    <h1><%= ticket.category.name %> - <%= ticket.subject %></h1>
+    <p><%= ticket.status %></p>
 
-  <div class="container" style="border: thin red solid;">
+    <ajax-form action="createResponse" :syncing.sync="syncing" :cloud-error.sync="cloudError" @submitted="submittedForm($event)" :handle-parsing="handleParsingForm">
+      <div class="form-group">
+        <label for="body">Body</label>
+        <textarea name="body" class="form-control" id='body' placeholder="Write a response here" :class="[formErrors.body ? 'is-invalid' : '']" v-model.trim="formData.body" focus-first>
+        </textarea>
+        <div class="invalid-feedback" v-if="formErrors.body">Please provide a valid body</div>
+      </div>
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select class="form-control" id="status" :class="[formErrors.status ? 'is-invalid' : '']" v-model.trim="formData.status">
+          <% for (let i = 0; i < statuses.length; i++) { %>
+          <option value="<%= statuses[i].id %>"><%= statuses[i].name %></option>
+          <% } %>
+        </select>
+        <div class="invalid-feedback" v-if="formErrors.status">Please select a valid Status</div>
+      </div>
+      <input type="hidden" id="ticketId" name="ticketId" value="<%= ticket.id %>" v-bind:value="formData.ticketId">
+      <p class="text-danger" v-if="cloudError"><small>An error occured while processing your request. Please check your information and try again, or <a href="/contact">contact support</a> if the error persists.</small></p>
+      <div class="form-group">
+        <ajax-button :syncing="syncing" class="btn-dark btn-lg btn-block">Submit</ajax-button>
+      </div>
+    </ajax-form>
+
+    <!--Responses go here.-->
+    <% for (let i = 0; i < responses.length; i++) { %>
+    <div class="card">
+      <div class="card-body">
+        <div class="row" style="background: #fafafa;">
+          <div class="col-sm-3">
+            <i class="fas fa-user"></i>
+            <p><%= responses[i].creator.emailAddress %></p>
+            <p><%= responses[i].createdAt.toISOString().replace(/T/, ' ').replace(/\..*/, '') %></p>
+          </div>
+          <div class="col-sm-9" style="border-left: 3px grey solid;">
+            <p><%= responses[i].body %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">
+          Ticket: <%= ticket.subject %>
+        </h3>
+        <div class="row" style="background: #fafafa;">
+          <div class="col-sm-3">
+            <i class="fas fa-user"></i>
+            <p><%= ticket.creator.emailAddress %></p>
+            <p><%= ticket.createdAt.toISOString().replace(/T/, ' ').replace(/\..*/, '') %></p>
+          </div>
+          <div class="col-sm-9" style="border-left: 3px grey solid;">
+            <p><%= ticket.body %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>(See also <em>assets/styles/pages/ticket/index.less</em>, <em>assets/js/pages/ticket/index.page.js</em>, and <em>api/controllers/ticket/view-index.js</em>.)</p>
   </div>
-
-  <h1>TODO: Implement this page.</h1>
-  <p><%= ticket.category.name %></p>
-  <p><%= ticket.creator.emailAddress %></p>
-  <p><%= ticket.subject %></p>
-  <p><%= ticket.body %></p>
-  <p><%= ticket.status %></p>
-  <p>(See also <em>assets/styles/pages/ticket/index.less</em>, <em>assets/js/pages/ticket/index.page.js</em>, and <em>api/controllers/ticket/view-index.js</em>.)</p>
 
 </div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

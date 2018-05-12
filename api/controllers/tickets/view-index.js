@@ -42,10 +42,11 @@ module.exports = {
     }
     */
 
-    let query = `
+    let ticketsQuery = `
       select
         t.id
         ,c.name category
+        ,ts.status statusId
         ,s.name status
         ,t.subject
         ,t.body
@@ -88,7 +89,7 @@ module.exports = {
         end -- Open tickets (oldest to newest) closed tickets (newest to oldest)
     `;
 
-    let tickets = (await sails.sendNativeQuery(query)).rows;
+    let tickets = (await sails.sendNativeQuery(ticketsQuery)).rows;
 
     // Respond with view.
     return exits.success({

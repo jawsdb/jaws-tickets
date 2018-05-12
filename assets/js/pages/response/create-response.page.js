@@ -1,4 +1,4 @@
-parasails.registerPage('ticket-index', {
+parasails.registerPage('create-response', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
@@ -57,10 +57,10 @@ parasails.registerPage('ticket-index', {
 
       var argins = this.formData;
 
-      if (this.ticket.id) {
-        this.formData.ticketId = this.ticket.id;
+      // Validate ticketId
+      if(!argins.ticketId) {
+        this.formErrors.ticketId = true;
       }
-
       // Validate body:
       if(!argins.body) {
         this.formErrors.body = true;

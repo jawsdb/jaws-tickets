@@ -17,6 +17,7 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
+    let ticketStatuses = Status.find();
 
     let ticketId = Number(this.req.params.id);
     let ticket = await Ticket.findOne({
@@ -41,12 +42,11 @@ module.exports = {
       id: ticket.statushist[0].status
     })).name;
 
-    sails.log.debug(ticket);
-
     // Respond with view.
     return exits.success({
       ticket: ticket,
-      responses: responses
+      responses: responses,
+      statuses: await ticketStatuses
     });
 
   }

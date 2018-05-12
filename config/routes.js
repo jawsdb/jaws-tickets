@@ -63,6 +63,7 @@ module.exports.routes = {
   'POST /api/v1/status':                                 { action: 'status/create-status' },
 
   'POST /api/v1/ticket':                                 { action: 'ticket/create-ticket' },
+  'POST /api/v1/response':                               { action: 'response/create-response' },
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
