@@ -1,4 +1,10 @@
 const gravatar = require('gravatar');
+const marked = require('marked');
+
+marked.setOptions({
+  sanitize: true,
+  sanitizer: require('pagedown-sanitizer')
+});
 
 module.exports = {
 
@@ -33,6 +39,7 @@ module.exports = {
     });
 
     ticket.creator.gravatar = gravatar.url(ticket.creator.emailAddress, {s: '100', r: 'pg', d: 'mm'}, true);
+    ticket.mdBody = marked(ticket.body);
 
     let responses = await Response.find({
       where: {ticket: ticketId},
@@ -43,6 +50,7 @@ module.exports = {
 
     for (let i = 0; i < responses.length; i++) {
       responses[i].creator.gravatar = gravatar.url(responses[i].creator.emailAddress, {s: '100', r: 'pg', d: 'mm'}, true);
+      responses[i].mdBody = marked(responses[i].body);
     }
 
     //TODO: remove sensitive info from ticket before sending to view
