@@ -19,6 +19,13 @@ module.exports = {
 
     success: {
       viewTemplatePath: 'pages/ticket/index'
+    },
+
+    unauthorized: {
+      statusCode: 401,
+      viewTemplatePath: '401',
+      description: 'Unauthorized',
+      extendedDescription: 'User is not allowed to view this page',
     }
 
   },
@@ -59,12 +66,18 @@ module.exports = {
       id: ticket.statushist[0].status
     })).name;
 
-    // Respond with view.
-    return exits.success({
-      ticket: ticket,
-      responses: responses,
-      statuses: await ticketStatuses
-    });
+    if (!this.req.me.isSuperAdmin && this.req.me.id !== ticket.creator.id) {
+      //throw 'unauthorized';
+      return exits.unauthorized();
+    }
+    else {
+      // Respond with view.
+      return exits.success({
+        ticket: ticket,
+        responses: responses,
+        statuses: await ticketStatuses
+      });
+    }
 
   }
 

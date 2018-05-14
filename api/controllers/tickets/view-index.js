@@ -77,6 +77,15 @@ module.exports = {
         ) ts on t.id = ts.ticket
         inner join
         status s on ts.status = s.id
+      where
+        $1 in (
+          select t.creator
+          union all
+          select sa.id
+          from user sa -- super admins
+          where
+            sa.isSuperAdmin = 1
+        )
       order by
         case s.name
           when 'Open' then 1
@@ -89,7 +98,7 @@ module.exports = {
         end -- Open tickets (oldest to newest) closed tickets (newest to oldest)
     `;
 
-    let tickets = (await sails.sendNativeQuery(ticketsQuery)).rows;
+    let tickets = (await sails.sendNativeQuery(ticketsQuery, [this.req.me.id])).rows;
 
     // Respond with view.
     return exits.success({
