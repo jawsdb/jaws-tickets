@@ -52,18 +52,24 @@ parasails.registerPage('create-status', {
       this.formErrors = {};
 
       var argins = this.formData;
+      console.log(argins);
 
-      // Validate categoryName:
+      // Validate statusName:
       if(!argins.statusName) {
         this.formErrors.statusName = true;
 
-        // Category name already exists
+        // Status name already exists
         for (let i = 0; i < this.statuses.length; i++) {
           if (argins.statusName === this.statuses[i]) {
             this.formErrors.statusName = true;
           }
         }
       }
+
+      if (!argins.description) {
+        this.formErrors.description = true;
+      }
+
 
       // If there were any issues, they've already now been communicated to the user,
       // so simply return undefined.  (This signifies that the submission should be

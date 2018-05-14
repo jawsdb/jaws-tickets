@@ -21,26 +21,6 @@ module.exports = {
     if (!this.req.me.isSuperAdmin) {
       queryCriteria.creator = this.req.me.id;
     }
-    /*
-    let tickets = await Ticket.find(queryCriteria)
-      .populate('category')
-      .populate('statushist', {
-        sort: 'id DESC',
-        limit: 1
-      })
-      .populate('creator');
-
-    let statuses = await Status.find();
-    let statusHash = {};
-    for (let i = 0; i < statuses.length; i++) {
-      // statusHash keys become strings for some reason
-      statusHash[statuses[i].id] = statuses[i].name;
-    }
-
-    for (let i = 0; i < tickets.length; i++) {
-      tickets[i].status = statusHash[String(tickets[i].statushist[0].status)];
-    }
-    */
 
     let ticketsQuery = `
       select
@@ -86,16 +66,9 @@ module.exports = {
           where
             sa.isSuperAdmin = 1
         )
+        and s.isClosedStatus = 0 -- Don't show closed tickets here
       order by
-        case s.name
-          when 'Open' then 1
-          when 'Closed' then 999
-          else 2
-        end
-        ,case s.name
-          when 'Closed' then 0 - t.id
-          else t.id
-        end -- Open tickets (oldest to newest) closed tickets (newest to oldest)
+        t.id -- Oldest to newest
     `;
 
     let tickets = (await sails.sendNativeQuery(ticketsQuery, [this.req.me.id])).rows;

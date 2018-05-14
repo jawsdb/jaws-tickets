@@ -20,6 +20,22 @@ module.exports = {
       example: 'OPEN'
     },
 
+    description: {
+      type: 'string',
+      required: true,
+      description: 'Description of status in plain english.'
+    },
+
+    isClosedStatus: {
+      type: 'boolean',
+      description: 'Is this a closed status?'
+    },
+
+    active: {
+      type: 'boolean',
+      description: 'Is this status active?'
+    },
+
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
