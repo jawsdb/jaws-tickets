@@ -54,6 +54,8 @@ module.exports = {
     let ticketId = isNaN(inputs.ticketId) ? inputs.ticketId : Number(inputs.ticketId);
     let statusId = isNaN(inputs.status) ? inputs.status : Number(inputs.status);
 
+    let status = await Status.findOne({id: statusId});
+
     await Ticketstatus.create({
       ticket: ticketId,
       status: statusId
@@ -65,6 +67,61 @@ module.exports = {
       creator: this.req.me.id,
       status: statusId
     });
+
+    let ticket = await Ticket.findOne({id: ticketId})
+    .populate('creator');
+
+    //Address email to ticket requestor
+    let recipients = [ticket.creator.emailAddress];
+
+    //Add admins working on ticket to recipients list
+    if (ticket.creator.id === this.req.me.id) {
+      let responses = await Response.find({ticket: ticketId})
+      .populate('creator');
+      recipients = [];
+      for (let i = 0; i < responses.length; i++) {
+        if (responses[i].creator.isSuperAdmin && !recipients.includes(responses[i].creator.emailAddress)) {
+          recipients.push(responses[i].creator.emailAddress);
+        }
+      }
+      if (recipients.length === 0) { //No super admins working ticket yet
+        let superAdmins = await User.find({
+          isSuperAdmin: true
+        });
+
+        for (let i = 0; i < superAdmins.length; i++) {
+          recipients.push(superAdmins[i].emailAddress);
+        }
+      }
+    }
+
+    let emailPromises = [];
+    for (let i = 0; i < recipients.length; i++) {
+      emailPromises.push(
+        sails.helpers.sendTemplateEmail.with({
+          to: recipients[i],
+          subject: 'JawsDB - ('+ status.name +') New Ticket Response Created',
+          template: 'email-response-created',
+          templateData: {
+            response: {
+              ticket: ticket.id,
+              body: inputs.body,
+              creator: {
+                emailAddress: this.req.me.emailAddress
+              }
+            }
+          }
+        })
+      );
+    }
+
+    Promise.all(emailPromises)
+      .then(resolutions => {
+        //console.log(resolutions);
+      })
+      .catch(err => {
+        console.log(err);
+      });
 
     return exits.success({
       ticketId: ticketId

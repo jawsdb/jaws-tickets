@@ -73,6 +73,35 @@ module.exports = {
       status: statusId
     });
 
+    let superAdmins = await User.find({
+      isSuperAdmin: true
+    });
+
+    let emailPromises = [];
+    for (let i = 0; i < superAdmins.length; i++) {
+      emailPromises.push(
+        sails.helpers.sendTemplateEmail.with({
+          to: superAdmins[i].emailAddress,
+          subject: 'JawsDB - New Ticket Created',
+          template: 'email-ticket-created',
+          templateData: {
+            ticket: newTicket,
+            creator: {
+              emailAddress: this.req.me.emailAddress
+            }
+          }
+        })
+      );
+    }
+
+    Promise.all(emailPromises)
+      .then(resolutions => {
+        //console.log(resolutions);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
     //throw {redirect: `/ticket/${newTicket.id}`};
     //return exits.redirect(`/ticket/${newTicket.id}`);//doesn't actually redirect for some reason
     return exits.success({
