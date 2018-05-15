@@ -23,11 +23,13 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
+    let status = await Status.findOne(inputs.statusId);
+
     await Status.update({
       id: inputs.statusId
     })
     .set({
-      active: false
+      active: !status.active
     });
 
     return exits.success();

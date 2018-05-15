@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
           <label for="body">Body</label>
-          <textarea name="body" class="form-control" id='body' placeholder="This is what happened..." :class="[formErrors.body ? 'is-invalid' : '']" v-model.trim="formData.body">
+          <textarea name="body" class="form-control" id='body' placeholder="Please describe the issue (markdown allowed)" :class="[formErrors.body ? 'is-invalid' : '']" v-model.trim="formData.body">
           </textarea>
           <div class="invalid-feedback" v-if="formErrors.body">Please provide a valid body</div>
         </div>

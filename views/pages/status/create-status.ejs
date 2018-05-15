@@ -49,7 +49,11 @@
           <td><%= statuses[i].name %></td>
           <td><%= statuses[i].description %></td>
           <td><%= statuses[i].isClosedStatus %></td>
-          <td><%= statuses[i].active %></td>
+          <td>
+            <form>
+              <button class="btn btn-outline-info toggle-active" type="button" value="<%= statuses[i].id %>"><%= statuses[i].active %></button>
+            </form>
+          </td>
         </tr>
         <% } %>
       <tbody>

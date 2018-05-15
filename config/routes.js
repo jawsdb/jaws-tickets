@@ -61,7 +61,7 @@ module.exports.routes = {
 
   'POST /api/v1/category':                               { action: 'category/create-category' },
   'POST /api/v1/status':                                 { action: 'status/create-status' },
-  'PATCH /api/v1/status/disable-status':                 { action: 'status/disable-status' },
+  'PATCH /api/v1/status/toggle-status-active':           { action: 'status/toggle-status-active' },
 
   'POST /api/v1/ticket':                                 { action: 'ticket/create-ticket' },
   'POST /api/v1/response':                               { action: 'response/create-response' },

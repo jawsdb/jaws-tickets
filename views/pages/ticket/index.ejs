@@ -10,7 +10,7 @@
         <ajax-form action="createResponse" :syncing.sync="syncing" :cloud-error.sync="cloudError" @submitted="submittedForm($event)" :handle-parsing="handleParsingForm">
           <div class="form-group">
             <label for="body">Reply</label>
-            <textarea name="body" class="form-control" id='body' placeholder="Write a response here" :class="[formErrors.body ? 'is-invalid' : '']" v-model="formData.body" focus-first>
+            <textarea name="body" class="form-control" id='body' placeholder="Write a response (markdown allowed)" :class="[formErrors.body ? 'is-invalid' : '']" v-model="formData.body" focus-first>
             </textarea>
             <div class="invalid-feedback" v-if="formErrors.body">Please provide a valid body</div>
           </div>

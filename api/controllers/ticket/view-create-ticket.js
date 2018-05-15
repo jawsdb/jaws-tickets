@@ -19,7 +19,7 @@ module.exports = {
   fn: async function (inputs, exits) {
 
     let ticketCategories = await Category.find();
-    let ticketStatuses = await Status.find();
+    let ticketStatuses = await Status.find({active: true});
 
     // Respond with view.
     return exits.success({

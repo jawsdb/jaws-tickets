@@ -32,7 +32,7 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
-    let ticketStatuses = Status.find();
+    let ticketStatuses = Status.find({active: true});
 
     let ticketId = Number(this.req.params.id);
     let ticket = await Ticket.findOne({
