@@ -62,6 +62,12 @@ module.exports.bootstrap = async function(done) {
   await User.createEach([
     { emailAddress: 'john@jawsdb.com', isSuperAdmin: true, password: await sails.helpers.passwords.hashPassword('abc123') },
   ]);
+  await Promise.all([
+    Status.createEach([
+      {name: 'Open', description: 'Ticket is open awaiting response from company', isClosedStatus: false, active: true},
+      {name: 'Closed', description: 'Ticket is closed', isClosedStatus: true, active: true},
+    ])
+  ]);
 
   // Save new bootstrap version
   await sails.helpers.fs.writeJson.with({
