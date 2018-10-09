@@ -11,6 +11,7 @@
     "async": "2.0.1",
     "gravatar": "^1.6.0",
     "marked": "^0.3.19",
+    "npm": "^6.4.1",
     "pagedown-sanitizer": "^1.0.0",
     "sails": "^1.0.2",
     "sails-hook-apianalytics": "^2.0.0",
